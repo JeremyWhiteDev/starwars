@@ -1,4 +1,9 @@
-import { fetchData, fetchPlanets, fetchSpecies } from "./starWarsData.js";
+import {
+  fetchData,
+  fetchPlanets,
+  fetchSpecies,
+  fetchShips,
+} from "./starWarsData.js";
 
 const displayData = async () => {
   const lukeData = await fetchData("people/1");
@@ -7,6 +12,7 @@ const displayData = async () => {
   const filmData = await fetchData("films/");
   const allPlanetsData = await fetchPlanets();
   const allSpeciesData = await fetchSpecies();
+  const allShipsData = await fetchShips();
 
   document.getElementById("app").innerHTML =
     renderLukeToDOM(lukeData) +
@@ -14,7 +20,8 @@ const displayData = async () => {
     renderHothToDOM(hothData) +
     renderFilmsToDOM(filmData) +
     renderPlanetsToDOM(allPlanetsData) +
-    renderSpeciesToDOM(allSpeciesData);
+    renderSpeciesToDOM(allSpeciesData) +
+    renderStarshipsToDOM(allShipsData);
 };
 
 const renderLukeToDOM = (data) => {
@@ -86,6 +93,18 @@ const renderSpeciesToDOM = (data) => {
     html += `<section class="item">
       <p>Species Name: ${species.name}</p>
       <p>Language: ${species.language}</p>
+      </section>`;
+  }
+  html += "</article>";
+  return html;
+};
+const renderStarshipsToDOM = (data) => {
+  let html = `<article class="card"><h1>STARSHIPS</h1>`;
+
+  for (const ship of data) {
+    html += `<section class="item">
+      <p>Ship Name: ${ship.name}</p>
+      <p>Passengers: ${ship.passengers}</p>
       </section>`;
   }
   html += "</article>";

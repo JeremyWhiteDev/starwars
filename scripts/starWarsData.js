@@ -27,3 +27,13 @@ export const fetchSpecies = async () => {
   console.log(fetchedData);
   return fetchedData;
 };
+export const fetchShips = async () => {
+  let fetchedData = [];
+  for (let i = 1; i < 5; i++) {
+    const dataFetch = await fetch(`${API}/starships/?page=${i}`);
+    const jsonData = await dataFetch.json();
+    fetchedData = fetchedData.concat(jsonData.results);
+  }
+  console.log(fetchedData);
+  return fetchedData;
+};
