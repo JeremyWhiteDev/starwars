@@ -55,6 +55,7 @@ const renderFilmsToDOM = (data) => {
   for (const film of data.results) {
     html += `<section class="card">
       <p>Film Name: ${film.title}</p>
+      <p>Released: ${film.release_date}</p>
       </section>`;
   }
   html += "</article>";
